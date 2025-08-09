@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
@@ -20,6 +21,8 @@ Route::post('/vendor-register',[FrontendController::class,'vendorRegister'])->na
 Route::post('/vendor-login',[FrontendController::class,'vendorLogin'])->name('vendor.login');
 //=============Order ==============//
 Route::post('/frontend-order/{id}', [OrderController::class, 'order'])->name('frontend.order');
+//========Contact=======================//
+Route::post('/contact-store',[ContactController::class ,'contactStore'])->name('contact.store');
 //======== Frontend route end=============//
 
 //==========Backend Route start==========//
@@ -37,5 +40,8 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
     Route::post('/vendor-delete/{id}',[VendorController::class,'vendorDelete'])->name('vendor.delete');
     Route::get('/profile-index',[VendorController::class,'profileIndex'])->name('profile.index');
     Route::post('/profile-update',[VendorController::class,'profileUpdate'])->name('profile.update');
+    //===========Contact==============//
+    Route::get('/contact-index',[ContactController::class,'index'])->name('contact.index');
+    Route::post('/contact-delete/{id}',[ContactController::class,'delete'])->name('contact.delete');
 });
 //==========Backend Route end==========//

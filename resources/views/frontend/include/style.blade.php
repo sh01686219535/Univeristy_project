@@ -14,7 +14,7 @@
     <!-- Custom Styles -->
     <link rel="stylesheet" href="{{ asset('frontendAsset/custom.css') }}">
     <link rel="stylesheet" href="style.css">
-
+  {!! ToastMagic::styles() !!}
     <!-- Custom Script -->
     <script defer src="script.js"></script>
 </head>

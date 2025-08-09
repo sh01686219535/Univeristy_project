@@ -68,6 +68,17 @@
                           </p>
                       </a>
                   </li>
+                    @if ($authUser && $authUser->role != 2)
+                  <li class="nav-item">
+                      <a href="{{ route('contact.index') }}" class="nav-link">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>
+                              Contact
+                              <i class="right fas fa-angle-right"></i>
+                          </p>
+                      </a>
+                  </li>
+                  @endif
                   {{-- <li class="nav-item">
                       <a href="#" class="nav-link">
                           <i class="nav-icon fas fa-chart-pie"></i>

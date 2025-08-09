@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 
 class FrontendController extends Controller
@@ -56,20 +57,37 @@ class FrontendController extends Controller
 
         $credentials = $request->only('email', 'password');
 
+        // if (isset(Auth::attempt($credentials))) {
+        //     // $user = Auth::user();
+        //     // if ($user->role == 2) {
+        //     //     if ($user->status == 'approved') {
+        //     //         return redirect()->intended('dashboard')
+        //     //             ->with('success', 'Vendor login successful!');
+        //     //     } else {
+        //     //         return back()->withErrors(['email' => 'Your registration is pending approval.']);
+        //     //     }
+        //     // } else {
+        //     //     return back()->withErrors(['email' => 'You are not authorized to access this section.']);
+        //     // }
+        //     return redirect()->intended('dashboard')
+        //         ->with('success', 'Vendor login successful!');
+        // }
         if (Auth::attempt($credentials)) {
-            // $user = Auth::user();
-            // if ($user->role == 2) {
-            //     if ($user->status == 'approved') {
-            //         return redirect()->intended('dashboard')
-            //             ->with('success', 'Vendor login successful!');
-            //     } else {
-            //         return back()->withErrors(['email' => 'Your registration is pending approval.']);
-            //     }
-            // } else {
-            //     return back()->withErrors(['email' => 'You are not authorized to access this section.']);
-            // }
-            return redirect()->intended('dashboard')
-                ->with('success', 'Vendor login successful!');
+            $user = Auth::user();
+            if ($user->role == 2) {
+                if ($user->status == 'approved') {
+                    return redirect()->intended('dashboard')
+                        ->with('success', 'Vendor login successful!');
+                } else {
+                    Auth::logout();
+                    return back()->withErrors(['email' => 'Your registration is pending approval.']);
+                }
+            } else {
+                Auth::logout();
+                return back()->withErrors(['email' => 'You are not authorized to access this section.']);
+            }
+        } else {
+            return back()->withErrors(['email' => 'Invalid email or password.']);
         }
 
         return back()->withErrors(['email' => 'Invalid email or password.']);
