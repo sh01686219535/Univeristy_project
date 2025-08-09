@@ -22,7 +22,7 @@
         @endif
 
         {{-- Login Form --}}
-        <form action="{{ route('vendor.login') }}" method="POST">
+        <form action="{{ route('login') }}" method="POST">
             @csrf
             <input type="email" name="email" placeholder="Email address" value="{{ old('email') }}" required>
             <input type="password" name="password" placeholder="Password" required>

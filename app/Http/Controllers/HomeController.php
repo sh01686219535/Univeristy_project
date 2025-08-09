@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
 use App\Models\Order;
 use App\Models\Property;
 use App\Models\Vendor;
@@ -22,6 +23,7 @@ class HomeController extends Controller
         $order = Order::count('id');
         $property = Property::count('id');
         $vendor = Vendor::count('id');
-        return view("backend.admin.home",compact('order','property','vendor'));
+        $contact = Contact::count('id');
+        return view("backend.admin.home",compact('order','property','vendor','contact'));
     }
 }

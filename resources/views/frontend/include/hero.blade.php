@@ -18,10 +18,9 @@
 
                 <select name="price" style="width:250px">
                     <option value="">Select Price Range</option>
-                    <option value="5000-6000">৳5000–৳6000</option>
-                    <option value="6000-8000">৳6000–৳8000</option>
-                    <option value="8000-10000">৳8000–৳10000</option>
-                    <option value="10000-15000">৳10000–৳15000</option>
+                    <option value="5000-6000">৳5000–৳8000</option>
+                    <option value="6000-8000">৳8000–৳12000</option>
+                    <option value="8000-10000">৳12000–৳15000</option>
                 </select>
 
                 <button style="width:180px">Search</button>
