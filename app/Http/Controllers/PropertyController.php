@@ -64,7 +64,7 @@ class PropertyController extends Controller
             return redirect('property');
         } else {
             $property = new Property();
-            $property->VendorId = $vendor->id;
+            // $property->VendorId = $vendor->id;
             $property->price = $request->price;
             $property->bedroom = $request->bedroom;
             $property->bathroom = $request->bathroom;

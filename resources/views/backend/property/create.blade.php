@@ -29,48 +29,66 @@
                                         @csrf
                                         <div class="form-group">
                                             <label for="price">Price</label>
-                                            <input type="number" id="price" class="form-control"
-                                                placeholder="Enter Price" name="price" required>
+                                            <input type="number" id="price" class="form-control @error('price') is-invalid  @enderror"
+                                                placeholder="Enter Price" name="price" value="{{old('price')}}">
+                                                @error('price')
+                                                    <div class="invalid-feedback">{{$message}}</div>
+                                                @enderror
                                         </div>
                                         <div class="col-md-12 d-flex">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="bedroom">Bedroom</label>
-                                                    <input type="text" id="bedroom" class="form-control" name="bedroom"
-                                                        placeholder="Enter Bedroom" required>
+                                                    <input type="text" id="bedroom" class="form-control @error('bedroom') is-invalid
+                                                    @enderror" name="bedroom" placeholder="Enter Bedroom" value="{{ old('bedroom')}}">
+                                                    @error('bedroom')
+                                                        <div class="invalid-feedback">{{$message}}</div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="bathroom">Bathroom</label>
-                                                    <input type="text" id="bathroom" class="form-control"
-                                                        name="bathroom" placeholder="Enter Bathroom" required>
+                                                    <input type="text" id="bathroom" class="form-control @error('bathroom') is-invalid @enderror"
+                                                        name="bathroom" placeholder="Enter Bathroom" value="{{ old('bathroom') }}">
+                                                        @error('bathroom')
+                                                            <div class="invalid-feedback">{{$message}}</div>
+                                                        @enderror
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="division">Division</label>
-                                            <select name="division" id="division" class="form-control">
+                                            <select name="division" id="division" class="form-control @error('division') is-invalid @enderror">
                                                 <option value="">Select Division</option>
-                                                <option value="dhaka">Dhaka</option>
-                                                <option value="chittagong">Chittagong</option>
-                                                <option value="khulna">Khulna</option>
-                                                <option value="rajshahi">Rajshahi</option>
-                                                <option value="rangpur">Rangpur</option>
-                                                <option value="mymenshingh">Mymenshingh</option>
-                                                <option value="sylhet ">Sylhet </option>
-                                                <option value="barishal ">Barishal </option>
+                                                <option value="dhaka" {{ old('division') == 'dhaka' ? 'selected' : ''}}>Dhaka</option>
+                                                <option value="chittagong" {{ old('division') == 'chittagong' ? 'selected' : ''}}>Chittagong</option>
+                                                <option value="khulna" {{ old('division') == 'khulna' ? 'selected' : ''}}>Khulna</option>
+                                                <option value="rajshahi" {{ old('division') == 'rajshahi' ? 'selected' : ''}}>Rajshahi</option>
+                                                <option value="rangpur" {{ old('division') == 'rangpur' ? 'selected' : ''}}>Rangpur</option>
+                                                <option value="Mymensingh" {{ old('division') == 'Mymensingh' ? 'selected' : ''}}>Mymensingh</option>
+                                                <option value="sylhet" {{ old('division') == 'sylhet' ? 'selected' : ''}}>Sylhet </option>
+                                                <option value="barishal" {{ old('division') == 'barishal' ? 'selected' : ''}}>Barishal </option>
                                             </select>
+                                            @error('division')
+                                                <div class="invalid-feedback">{{$message}}</div>
+                                            @enderror
                                         </div>
                                         <div class="form-group">
                                             <label for="location">Location</label>
-                                            <input type="text" id="location" class="form-control" name="location"
-                                                placeholder="Enter Location" required>
+                                            <input type="text" id="location" class="form-control @error('location') is-invalid @enderror" name="location"
+                                                placeholder="Enter Location" value="{{ old('location') }}">
+                                                @error('location')
+                                                    <div class="invalid-feedback">{{$message}}</div>
+                                                @enderror
                                         </div>
 
                                         <div class="form-group">
                                             <label for="description">Description</label>
-                                            <textarea name="description" id="description" class="form-control" placeholder="Enter Some Description"></textarea>
+                                            <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror" placeholder="Enter Some Description" >{{ old('description') }}</textarea>
+                                            @error('description')
+                                                <div class="invalid-feedback">{{$message}}</div>
+                                            @enderror
                                         </div>
                                         <div class="form-group">
                                             <label for="image">image</label>

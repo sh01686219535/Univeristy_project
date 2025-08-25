@@ -60,8 +60,8 @@
                                                 <option value="rangpur"
                                                     {{ $property->division == 'rangpur' ? 'selected' : '' }}>Rangpur
                                                 </option>
-                                                <option value="mymenshingh"
-                                                    {{ $property->division == 'mymenshingh' ? 'selected' : '' }}>
+                                                <option value="Mymensingh"
+                                                    {{ $property->division == 'Mymensingh' ? 'selected' : '' }}>
                                                     Mymenshingh</option>
                                                 <option value="sylhet"
                                                     {{ $property->division == 'sylhet' ? 'selected' : '' }}>Sylhet</option>

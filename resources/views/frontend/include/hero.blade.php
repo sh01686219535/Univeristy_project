@@ -12,15 +12,15 @@
                     <option value="Sylhet">Sylhet</option>
                     <option value="Rajshahi">Rajshahi</option>
                     <option value="Khulna">Khulna</option>
-                    <option value="Barisal">Barisal</option>
+                    <option value="barishal">Barisal</option>
                     <option value="Rangpur">Rangpur</option>
                 </select>
 
                 <select name="price" style="width:250px">
                     <option value="">Select Price Range</option>
-                    <option value="5000-6000">৳5000–৳8000</option>
-                    <option value="6000-8000">৳8000–৳12000</option>
-                    <option value="8000-10000">৳12000–৳15000</option>
+                    <option value="5000-8000">৳5000–৳8000</option>
+                    <option value="9000-12000">৳9000–৳12000</option>
+                    <option value="13000-15000">৳13000–৳15000</option>
                 </select>
 
                 <button style="width:180px">Search</button>
