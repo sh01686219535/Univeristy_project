@@ -1,0 +1,88 @@
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+      <!-- Brand Logo -->
+      <a href="{{ route('dashboard') }}" class="brand-link">
+          <img src="{{ asset('backendAsset') }}/img/logo/dashboardLogo.png" class="brand-image img-circle elevation-3"
+              style="opacity: .8">
+          <span class="brand-text font-weight-light">Bashabari</span>
+      </a>
+
+      <!-- Sidebar -->
+      <div class="sidebar">
+
+          <!-- Sidebar Menu -->
+          <nav class="mt-2">
+              <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                  data-accordion="false">
+                  <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+                  <li class="nav-item menu-open">
+                      <a href="{{ route('vendor.dashboard') }}" class="nav-link active">
+                          <i class="nav-icon fas fa-tachometer-alt"></i>
+                          <p>
+                              Vendor Dashboard
+                              <i class="right fas fa-angle-left"></i>
+                          </p>
+                      </a>
+                  </li>
+{{--            
+                  <li class="nav-item">
+                      <a href="{{ route('property.index') }}" class="nav-link">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>
+                              Property
+                              <i class="right fas fa-angle-right"></i>
+                          </p>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="{{ route('order') }}" class="nav-link">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>
+                              Order
+                              <i class="right fas fa-angle-right"></i>
+                          </p>
+                      </a>
+                  </li>
+                  @php
+                      $authUser = Auth::user();
+                  @endphp
+
+                  @if ($authUser && $authUser->role != 2)
+                      <li class="nav-item">
+                          <a href="{{ route('vendor.index') }}" class="nav-link">
+                              <i class="far fa-circle nav-icon"></i>
+                              <p>
+                                  Vendor
+                                  <i class="right fas fa-angle-right"></i>
+                              </p>
+                          </a>
+                      </li>
+                  @endif
+
+                  <li class="nav-item">
+                      <a href="{{ route('profile.index') }}" class="nav-link">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>
+                              Profile
+                              <i class="right fas fa-angle-right"></i>
+                          </p>
+                      </a>
+                  </li>
+                    @if ($authUser && $authUser->role != 2)
+                  <li class="nav-item">
+                      <a href="{{ route('contact.index') }}" class="nav-link">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>
+                              Contact
+                              <i class="right fas fa-angle-right"></i>
+                          </p>
+                      </a>
+                  </li>
+                  @endif --}}
+                
+              </ul>
+          </nav>
+          <!-- /.sidebar-menu -->
+      </div>
+      <!-- /.sidebar -->
+  </aside>
