@@ -19,12 +19,44 @@
                                         enctype="multipart/form-data">
                                         @csrf
                                         @method('PUT')
-                                        <div class="form-group">
+                                        <div class="group-top">
+                                             <div class="form-group">
                                             <label for="title">Property Title</label>
                                             <input type="text" id="title" class="form-control"
                                                 value="{{ $property->title }}" placeholder="Enter Property Title" name="title"
                                                 required>
                                         </div>
+                                            <div class="form-group mb-3">
+                                                <label for="category_id">Property Category</label>
+                                                <select 
+                                                    id="category_id" 
+                                                    name="category_id"
+                                                    class="form-control @error('category_id') is-invalid @enderror"
+                                                    required >
+                                                    <option value="">-- Select Category --</option>
+                                                    @foreach ($categories as $data)
+                                                        <option 
+                                                            value="{{ $data->id }}"
+                                                            {{ old('category_id', $property->category_id ?? '') == $data->id ? 'selected' : '' }}
+                                                        >
+                                                            {{ $data->category }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                                @error('category_id')
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                              <div class="form-group">
+                                                <label for="size">Property Size</label>
+                                                <input type="text" id="size"
+                                                    class="form-control @error('size') is-invalid  @enderror"
+                                                    placeholder="Enter Property size" name="size"
+                                                    value="{{ old('size',  $property->price) }}">
+                                                @error('size')
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
+                                            </div>
                                         <div class="form-group">
                                             <label for="price">Price</label>
                                             <input type="number" id="price" class="form-control"
@@ -49,7 +81,10 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        </div>
+                                        <hr>
+                                        <div class="group-bottom">
+                                               <div class="form-group">
                                             <label for="division">Division</label>
                                             <select name="division" id="division" class="form-control" required>
                                                 <option value="">Select Division</option>
@@ -89,6 +124,7 @@
                                         <div class="form-group">
                                             <label for="image">image</label>
                                             <input type="file" id="image" class="form-control" name="image">
+                                        </div>
                                         </div>
                                         <button type="submit" class="btn btn-success">Submit</button>
                                     </form>

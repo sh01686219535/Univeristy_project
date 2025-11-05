@@ -26,6 +26,24 @@
                   </li>
            
                   <li class="nav-item">
+                      <a href="{{ route('category.index') }}" class="nav-link">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>
+                              Category
+                              <i class="right fas fa-angle-right"></i>
+                          </p>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="{{ route('advertisement.index') }}" class="nav-link">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>
+                              Advertisement
+                              <i class="right fas fa-angle-right"></i>
+                          </p>
+                      </a>
+                  </li>
+                  <li class="nav-item">
                       <a href="{{ route('property.index') }}" class="nav-link">
                           <i class="far fa-circle nav-icon"></i>
                           <p>

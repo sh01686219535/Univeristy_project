@@ -515,9 +515,11 @@ header p {
     bottom: 15px;
     left: 20px;
     color: #fff;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.2);
     padding: 8px 15px;
-    border-radius: 8px;
+    border-radius: 15px;
+    text-align: center;
+    text-transform: capitalize;
 }
 
 /* Dots below the slider */
@@ -545,4 +547,16 @@ header p {
 .container-property{
   max-width: 95%;
   margin: 0 auto;
+}
+.advertisement-img > img{
+    max-width: 100%;
+    margin: 20px 0;
+    height: 400px;
+}
+.advertisement-bottom-img img {
+    width: 90%;
+    height: 200px;
+    display: block;
+    margin: 20px auto;
+    object-fit: cover; /* ensures the image scales nicely */
 }

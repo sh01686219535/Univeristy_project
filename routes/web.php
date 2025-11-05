@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdvertisementController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -46,6 +48,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     //===========Contact==============//
     Route::get('/contact-index', [ContactController::class, 'index'])->name('contact.index');
     Route::post('/contact-delete/{id}', [ContactController::class, 'delete'])->name('contact.delete');
+    //==========Category=============//
+    Route::resource('category',CategoryController::class);
+    //=========Advertisement=========//
+    Route::resource('advertisement',AdvertisementController::class);
 });
 
 Route::middleware('auth')->group(function () {

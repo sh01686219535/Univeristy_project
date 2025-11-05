@@ -6,7 +6,8 @@
         <div class="col-md-12">
             <div class="row">
                 <div class="properties-search col-md-3">
-                    <div class="card" style="background:lightgray;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                    <div class="card"
+                        style="background:lightgray;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
                         <div class="card-head">
                             <h3 class="m-3 text-center">Find Your Dream Home</h3>
                             <hr>
@@ -14,40 +15,72 @@
                         <div class="card-body">
                             <div class="">
                                 <form action="{{ route('home') }}" method="GET">
-                                    <label for="division"><b>Select Division</b></label>
-                                    <select name="division" style="" class="form-control my-2">
-                                        <option value="">Select Division</option>
-                                        <option value="Dhaka">Dhaka</option>
-                                        <option value="Mymensingh">Mymensingh</option>
-                                        <option value="Chittagong">Chittagong</option>
-                                        <option value="Sylhet">Sylhet</option>
-                                        <option value="Rajshahi">Rajshahi</option>
-                                        <option value="Khulna">Khulna</option>
-                                        <option value="barishal">Barisal</option>
-                                        <option value="Rangpur">Rangpur</option>
-                                    </select>
-                                    <label for="price"><b>Price</b></label>
-                                    <div class="d-flex justify-content-center gap-2 my-3">
-                                        <input type="number" class="form-control w-50" name="min_price"
-                                            placeholder="Min Price">
-                                        <input type="number" class="form-control w-50" name="max_price"
-                                            placeholder="Max Price">
+                                    <div class="form-group">
+                                        <label for="title"><b>Search Keyword</b></label>
+                                        <input type="text" id="title" name="title" placeholder="Search text"
+                                            class="my-2 form-control">
                                     </div>
-
-                                    {{-- <select name="price" style="width:250px">
-                                        <option value="">Select Price Range</option>
-                                        <option value="5000-8000">৳5000–৳8000</option>
-                                        <option value="9000-12000">৳9000–৳12000</option>
-                                        <option value="13000-15000">৳13000–৳15000</option>
-                                    </select> --}}
+                                    <div class="from-group">
+                                        <label for="division"><b>Select Division</b></label>
+                                        <select name="division" style="" class="form-control my-2">
+                                            <option value="">Select Division</option>
+                                            <option value="Dhaka">Dhaka</option>
+                                            <option value="Mymensingh">Mymensingh</option>
+                                            <option value="Chittagong">Chittagong</option>
+                                            <option value="Sylhet">Sylhet</option>
+                                            <option value="Rajshahi">Rajshahi</option>
+                                            <option value="Khulna">Khulna</option>
+                                            <option value="barishal">Barisal</option>
+                                            <option value="Rangpur">Rangpur</option>
+                                        </select>
+                                    </div>
+                                    <div class="from-group">
+                                        <label for="category"><b>Select Category</b></label>
+                                        <select name="category" style="" class="form-control my-2">
+                                            <option value="">Select Category</option>
+                                            @foreach ($category as $data)
+                                                <option value="{{ $data->id }}">{{ $data->category }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="from-group">
+                                        <label for="size"><b>Size (Sqft)</b></label>
+                                        <div class="d-flex justify-content-center gap-2 my-3">
+                                            <input type="number" class="form-control w-50" name="min_size"
+                                                placeholder="Min">
+                                            <input type="number" class="form-control w-50" name="max_size"
+                                                placeholder="Max">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="bed"><b>Min No. of Bed</b></label>
+                                        <input type="text" id="bed" name="bed" placeholder="Number of Bed"
+                                            class="my-2 form-control">
+                                    </div>
+                                    <div class="from-group">
+                                        <label for="price"><b>Price</b></label>
+                                        <div class="d-flex justify-content-center gap-2 my-3">
+                                            <input type="number" class="form-control w-50" name="min_price"
+                                                placeholder="Min Price">
+                                            <input type="number" class="form-control w-50" name="max_price"
+                                                placeholder="Max Price">
+                                        </div>
+                                    </div>
                                     <button class="btn btn-success fs-4">Search</button>
                                 </form>
                             </div>
                         </div>
                     </div>
-
+                    <div class="advetisement-section-middle">
+                        <div class="advertisement-img">
+                            @if (isset($advertisementMiddle->image))
+                                <img src="{{ asset($advertisementMiddle->image) }}" alt="">
+                            @endif
+                        </div>
+                    </div>
                 </div>
-                <div class="properties-box col-md-9 border" style="  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                <div class="properties-box col-md-9 border"
+                    style="  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
                     <h2>Featured Properties</h2>
                     <hr>
                     <div class="property-grid">
@@ -69,7 +102,8 @@
                                 <div class="modal-dialog modal-dialog-centered modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="modalLabel{{ $key }}">Property Booking</h5>
+                                            <h5 class="modal-title" id="modalLabel{{ $key }}">Property Booking
+                                            </h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
@@ -92,7 +126,8 @@
                                                 <!-- Right: Contact Form -->
                                                 <div class="col-md-6">
                                                     <h4>Contact Information</h4>
-                                                    <form action="{{ route('frontend.order', $data->id) }}" method="POST">
+                                                    <form action="{{ route('frontend.order', $data->id) }}"
+                                                        method="POST">
                                                         @csrf
                                                         <div class="mb-3">
                                                             <label for="name" class="form-label">Full Name</label>
@@ -132,6 +167,16 @@
                     </div>
                 </div>
             </div>
+            <div class="advertisement-bottom">
+                <div class="advetisement-section-bottom">
+                    <div class="advertisement-bottom-img">
+                        @if (isset($advertisementBottom->image))
+                            <img src="{{ asset($advertisementBottom->image ?? '') }}" alt="">
+                        @endif
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
     @include('frontend.include.testimonial')

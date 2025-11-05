@@ -42,5 +42,6 @@
       $('#example').DataTable();
   });
 </script>
+@stack('js')
 </body>
 </html>

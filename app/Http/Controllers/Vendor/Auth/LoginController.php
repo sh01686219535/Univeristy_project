@@ -28,7 +28,7 @@ class LoginController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('vendor.auth.master', absolute: false));
+        return redirect()->intended(route('vendor.auth.home', absolute: false));
     }
 
     /**

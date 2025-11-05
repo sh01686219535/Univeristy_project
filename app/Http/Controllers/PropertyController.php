@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Vendor\VendorRequest;
+use App\Models\Category;
 use App\Models\Property;
 use App\Models\Vendor;
 use Illuminate\Http\Request;
@@ -33,7 +34,8 @@ class PropertyController extends Controller
      */
     public function create()
     {
-        return view("backend.property.create");
+        $categories = Category::all();
+        return view("backend.property.create", compact('categories'));
     }
 
     /**
@@ -130,6 +132,9 @@ class PropertyController extends Controller
 
         // Assign property fields
         $property->title = $request->title;
+        $property->category_id = $request->category_id;
+        $property->vendor_id = $request->vendor_id;
+        $property->size = $request->size;
         $property->price = $request->price;
         $property->bedroom = $request->bedroom;
         $property->bathroom = $request->bathroom;
@@ -179,9 +184,11 @@ class PropertyController extends Controller
      */
     public function edit(string $id)
     {
+        $categories = Category::all();
         $property = Property::findOrFail($id);
-        return view("backend.property.edit", compact('property'));
+        return view("backend.property.edit", compact('property', 'categories'));
     }
+
 
     /**
      * Update the specified resource in storage.

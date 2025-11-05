@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Advertisement;
+use App\Models\Category;
 use App\Models\Property;
 use App\Models\User;
 use App\Models\Vendor;
@@ -12,29 +14,83 @@ use Illuminate\Support\Facades\Hash;
 
 class FrontendController extends Controller
 {
-    //frontend home
-    // public function home(){
-    //     $property = Property::orderBy('id', 'desc')->get();
-    //     return view('frontend.home.home',compact('property'));
+
+    // public function home(Request $request)
+    // {
+    //     //advertisement section
+    //     $advertisementTop = Advertisement::where('place', 'top')->first();
+    //     $advertisementMiddle = Advertisement::where('place', 'middle')->first();
+    //     $advertisementBottom = Advertisement::where('place', 'bottom')->first();
+
+    //     //dynamic slider section
+    //     $propertySlider = Property::latest()->take(6)->get();
+    //     // category
+    //     $category = Category::all();
+    //     $query = Property::query();
+    //     // Filter by Division
+    //     if ($request->filled('division')) {
+    //         $query->where('division', $request->division);
+    //     }
+
+    //     // Filter by price
+    //     if ($request->filled('min_price') && $request->filled('max_price')) {
+    //         $query->whereBetween('price', [$request->min_price, $request->max_price]);
+    //     } elseif ($request->filled('min_price')) {
+    //         $query->where('price', '>=', $request->min_price);
+    //     } elseif ($request->filled('max_price')) {
+    //         $query->where('price', '<=', $request->max_price);
+    //     }
+
+    //     $property = $query->orderBy('id', 'desc')->get();
+
+    //     return view('frontend.home.home', compact('category','propertySlider','property', 'advertisementTop', 'advertisementMiddle', 'advertisementBottom'));
     // }
     public function home(Request $request)
     {
+        // Advertisement section
+        $advertisementTop = Advertisement::where('place', 'top')->first();
+        $advertisementMiddle = Advertisement::where('place', 'middle')->first();
+        $advertisementBottom = Advertisement::where('place', 'bottom')->first();
+
+        // Dynamic slider section (last 6 properties)
+        $propertySlider = Property::latest()->take(6)->get();
+
+        // Categories
+        $category = Category::all();
+
+        // Build property query
         $query = Property::query();
+
+        // Search by title (keyword)
+        if ($request->filled('title')) {
+            $query->where('title', 'like', '%' . $request->title . '%');
+        }
 
         // Filter by Division
         if ($request->filled('division')) {
             $query->where('division', $request->division);
         }
 
-        // Filter by Price Range
-        // if ($request->filled('price')) {
-        //     $range = explode('-', $request->price);
-        //     if (count($range) === 2) {
-        //         $min = (int) $range[0];
-        //         $max = (int) $range[1];
-        //         $query->whereBetween('price', [$min, $max]);
-        //     }
-        // }
+        // Filter by Category
+        if ($request->filled('category')) {
+            $query->where('category_id', $request->category);
+        }
+
+        // Filter by Size range (optional numeric filter)
+        if ($request->filled('min_size') && $request->filled('max_size')) {
+            $query->whereBetween('size', [$request->min_size, $request->max_size]);
+        } elseif ($request->filled('min_size')) {
+            $query->where('size', '>=', $request->min_size);
+        } elseif ($request->filled('max_size')) {
+            $query->where('size', '<=', $request->max_size);
+        }
+
+        // Filter by bedroom count
+        if ($request->filled('bed')) {
+            $query->where('bedroom', '>=', $request->bed);
+        }
+
+        // Filter by price range
         if ($request->filled('min_price') && $request->filled('max_price')) {
             $query->whereBetween('price', [$request->min_price, $request->max_price]);
         } elseif ($request->filled('min_price')) {
@@ -43,10 +99,20 @@ class FrontendController extends Controller
             $query->where('price', '<=', $request->max_price);
         }
 
+        // Get final result
         $property = $query->orderBy('id', 'desc')->get();
 
-        return view('frontend.home.home', compact('property'));
+        // Return view
+        return view('frontend.home.home', compact(
+            'category',
+            'propertySlider',
+            'property',
+            'advertisementTop',
+            'advertisementMiddle',
+            'advertisementBottom'
+        ));
     }
+
 
     //frontend login
     public function login()

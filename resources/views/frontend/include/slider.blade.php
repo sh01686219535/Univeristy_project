@@ -1,6 +1,18 @@
 <section class="slider">
     <div class="slider-track">
-        <div class="slide">
+        @foreach ($propertySlider as $slider)
+            <div class="slide">
+               <a href="{{ route('property.details', $slider->id) }}">
+                 <img src="{{ asset($slider->image) }}">
+                <div class="text">
+                    <h5>{{ $slider->title }}</h4>
+                        <p><b>Price : {{ $slider->price }} Taka</b></p>
+                        <p>Address : {{ $slider->location }}</p>
+                </div>
+               </a>
+            </div>
+        @endforeach
+        {{-- <div class="slide">
             <img src="{{ asset('frontendAsset/slider_image/9.jpg') }}">
             <div class="text">Caption One</div>
         </div>
@@ -23,7 +35,7 @@
         <div class="slide">
             <img src="{{ asset('frontendAsset/slider_image/25.jpg') }}">
             <div class="text">Caption Six</div>
-        </div>
+        </div> --}}
     </div>
     <div class="dots">
         <span class="dot"></span>
