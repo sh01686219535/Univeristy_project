@@ -59,7 +59,7 @@
                                     <h3 class="fw-bold text-center my-2">{{$property->phone ?? '01910-000000'}}</h3>
                                     <h4 class="mt-3 text-center">Send Message to Property Owner</h4>
 
-                                    <form action="#" method="POST">
+                                    <form action="{{ route('frontend.order', $property->id) }}" method="POST">
                                         @csrf
                                         <div class="mb-3">
                                             <input type="text" name="name" class="form-control" id="name"

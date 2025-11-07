@@ -21,6 +21,8 @@
                                             <th>Phone</th>
                                             <th>Email</th>
                                             <th>Message</th>
+                                            <th>Property</th>
+                                            <th>Approve</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -35,8 +37,34 @@
                                                 <td>{{ $data->phone }}</td>
                                                 <td>{{ $data->email }}</td>
                                                 <td>{{ Str::limit($data->message, 20) }}</td>
+                                                <td><a href="{{ route('order.property', $data->id) }}"
+                                                        class="btn btn-info"><i class="fa fa-eye"
+                                                            aria-hidden="true"></i></a></td>
+                                                <td class="text-center">
+                                                    @if ($data->status === 'approved')
+                                                        <span class="badge bg-success px-3 py-2">
+                                                            <i class="fas fa-check-circle"></i> Approved
+                                                        </span>
+                                                    @elseif ($data->status === 'cancel')
+                                                        <span class="badge bg-danger px-3 py-2">
+                                                            <i class="fas fa-times-circle"></i> Canceled
+                                                        </span>
+                                                    @else
+                                                        <a href="{{ route('order.approve', $data->id) }}"
+                                                            class="btn btn-success btn-sm me-2">
+                                                            <i class="fas fa-check-circle"></i> Approve
+                                                        </a>
+                                                        <a href="{{ route('order.cancel', $data->id) }}"
+                                                            class="btn btn-danger btn-sm">
+                                                            <i class="fas fa-times-circle"></i> Cancel
+                                                        </a>
+                                                    @endif
+                                                </td>
+
+
                                                 <td class="d-flex">
-                                                    <form class="badge" action="{{route('order.delete',$data->id)}}" method="post">
+                                                    <form class="badge" action="{{ route('order.delete', $data->id) }}"
+                                                        method="post">
                                                         @csrf
                                                         <button class="btn btn-danger " type="submit"
                                                             onclick="return confirm('Are you sure you want to delete this?')">

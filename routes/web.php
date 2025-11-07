@@ -39,6 +39,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     //============Order==============//
     Route::get('order', [OrderController::class, 'orderIndex'])->name('order');
     Route::post('order-delete/{id}', [OrderController::class, 'orderDelete'])->name('order.delete');
+    Route::get('order-property/{id}', [OrderController::class, 'orderProperty'])->name('order.property');
+    Route::get('order-approve/{id}', [OrderController::class, 'orderApprove'])->name('order.approve');
+    Route::get('order-cancel/{id}', [OrderController::class, 'orderCancel'])->name('order.cancel');
     //==========Vendor =============//
     Route::get('/vendor-index', [VendorController::class, 'index'])->name('vendor.index');
     Route::get('/vendor-approve/{id}', [VendorController::class, 'vendorApprove'])->name('vendor.approve');
