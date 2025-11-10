@@ -63,6 +63,10 @@
 
 
                                                 <td class="d-flex">
+                                                      <a href="{{ route('order.edit', $data->id) }}"
+                                                            class="btn btn-info">
+                                                            <i class="fa-solid fa-edit"></i>
+                                                        </a>
                                                     <form class="badge" action="{{ route('order.delete', $data->id) }}"
                                                         method="post">
                                                         @csrf

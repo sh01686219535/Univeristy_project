@@ -2,6 +2,21 @@
 @section('content')
     @include('frontend.include.slider')
     {{-- @include('frontend.include.hero') --}}
+    <section class="advertisement-top">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="advertisement-top">
+                    <div class="advetisement-section-top">
+                        <div class="advertisement-top-img">
+                            @if (isset($advertisementTop->image))
+                                <img src="{{ asset($advertisementTop->image ?? '') }}" alt="">
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <section class="properties">
         <div class="col-md-12">
             <div class="row">
@@ -125,6 +140,17 @@
 
                                                 <!-- Right: Contact Form -->
                                                 <div class="col-md-6">
+                                                    {{-- validation --}}
+                                                    @if ($errors->any())
+                                                        <div class="alert alert-danger">
+                                                            <ul>
+                                                                @foreach ($errors->all() as $error)
+                                                                    <li>{{ $error }}</li>
+                                                                @endforeach
+                                                            </ul>
+                                                        </div>
+                                                    @endif
+                                                    {{-- validation --}}
                                                     <h4>Contact Information</h4>
                                                     <form action="{{ route('frontend.order', $data->id) }}"
                                                         method="POST">
@@ -137,7 +163,7 @@
                                                         <div class="mb-3">
                                                             <label for="phone" class="form-label">Phone
                                                                 Number</label>
-                                                            <input type="text" name="phone" class="form-control"
+                                                            <input type="number" name="phone" class="form-control"
                                                                 id="phone" required>
                                                         </div>
                                                         <div class="mb-3">

@@ -45,6 +45,6 @@ class RegisteredUserController extends Controller
 
         Auth::guard('vendor')->login($vendor);
 
-        return redirect(route('vendor.dashboard', absolute: false));
+        return redirect()->route('vendor.dashboard');
     }
 }

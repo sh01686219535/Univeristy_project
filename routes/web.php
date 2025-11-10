@@ -42,6 +42,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('order-property/{id}', [OrderController::class, 'orderProperty'])->name('order.property');
     Route::get('order-approve/{id}', [OrderController::class, 'orderApprove'])->name('order.approve');
     Route::get('order-cancel/{id}', [OrderController::class, 'orderCancel'])->name('order.cancel');
+    Route::get('order-edit/{id}', [OrderController::class, 'orderEdit'])->name('order.edit');
+    Route::post('order-update/{id}', [OrderController::class, 'orderUpdate'])->name('order.update');
     //==========Vendor =============//
     Route::get('/vendor-index', [VendorController::class, 'index'])->name('vendor.index');
     Route::get('/vendor-approve/{id}', [VendorController::class, 'vendorApprove'])->name('vendor.approve');

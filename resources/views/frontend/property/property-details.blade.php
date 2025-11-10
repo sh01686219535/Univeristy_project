@@ -10,7 +10,7 @@
                         <div class="property-details">
                             <div class="card">
                                 <div class="card-head">
-                                    <h3 class="m-3 text-center">{{$property->title ?? 'Title'}}</h3>
+                                    <h3 class="m-3 text-center">{{ $property->title ?? 'Title' }}</h3>
                                 </div>
                                 <div class="card-body">
                                     @php
@@ -45,6 +45,17 @@
 
                     {{-- Right Section: Property Owner --}}
                     <div class="col-md-4">
+                        {{-- validation --}}
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        {{-- validation --}}
                         <div class="property-owner">
                             <div class="card">
                                 <div class="card-head">
@@ -56,7 +67,7 @@
                                         <img src="{{ asset('frontendAsset/images/property_owner.jpg') }}"
                                             alt="property image" class="d-block mx-auto cursor-pointer">
                                     </div>
-                                    <h3 class="fw-bold text-center my-2">{{$property->phone ?? '01910-000000'}}</h3>
+                                    <h3 class="fw-bold text-center my-2">{{ $property->phone ?? '01910-000000' }}</h3>
                                     <h4 class="mt-3 text-center">Send Message to Property Owner</h4>
 
                                     <form action="{{ route('frontend.order', $property->id) }}" method="POST">
@@ -66,7 +77,7 @@
                                                 placeholder="Enter Your Name">
                                         </div>
                                         <div class="mb-3">
-                                            <input type="text" name="phone" class="form-control" id="phone"
+                                            <input type="number" name="phone" class="form-control" id="phone"
                                                 placeholder="Enter Your Phone">
                                         </div>
                                         <div class="mb-3">

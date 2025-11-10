@@ -19,9 +19,11 @@ class OrderController extends Controller
     public function order(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required',
-            'phone' => 'required',
+            'name' => 'required|string|max:100',
+            'phone' => 'required|digits_between:8,15',
+            'email' => 'required|email|max:100',
         ]);
+
         $property = Property::findOrFail($id);
         if (isset($property)) {
             $order = new Order();
@@ -66,7 +68,7 @@ class OrderController extends Controller
         return view('backend.order.property_details', compact('property', 'categories'));
     }
 
-     public function orderApprove($id)
+    public function orderApprove($id)
     {
         $order = Order::findOrFail($id);
         $order->status = 'approved';
@@ -105,5 +107,32 @@ class OrderController extends Controller
         }
 
         return redirect()->back()->with('error', 'Order cancelled and emails sent.');
+    }
+    //orderEdit
+    public function orderEdit($id)
+    {
+        $order = Order::findOrFail($id);
+        return view('backend.order.edit', compact('order'));
+    }
+    //orderUpdate
+    public function orderUpdate(Request $request, $id)
+    {
+        $order = Order::findOrFail($id);
+        $order->name = $request->name;
+        // $order->property_id = $property->id;
+        // $order->vendor_id = $property->vendor_id;
+        $order->phone = $request->phone;
+        $order->email = $request->email;
+        if ($request->status == "approved") {
+            $order->status = $request->status;
+        } elseif ($request->status == "cancel") {
+            $order->status = $request->status;
+        } elseif($request->status == 'pending') {
+            $order->status = '';
+        }
+        $order->message = $request->message;
+        $order->save();
+        // ToastMagic::success('Order Submitted successfully!');
+        return redirect()->route('order')->with('success', 'Order Update Successfully');
     }
 }

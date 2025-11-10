@@ -25,11 +25,11 @@ class LoginController extends Controller
     public function store(VendorLoginRequest $request): RedirectResponse
     {
         $request->authenticate();
-
         $request->session()->regenerate();
 
-        return redirect()->intended(route('vendor.auth.home', absolute: false));
+        return redirect()->intended(route('vendor.dashboard'));
     }
+
 
     /**
      * Destroy an authenticated session.
