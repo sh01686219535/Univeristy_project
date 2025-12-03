@@ -1,0 +1,574 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f9f9f9;
+  color: #333;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.nav-links a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #333;
+}
+
+.hero {
+  background: url('https://image.slidesdocs.com/responsive-images/background/celebrating-the-purchase-of-a-new-home-couple-poses-in-front-of-beautiful-house-real-estate-banner-3d-illustration-powerpoint-background_cd9008602d__960_540.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+  padding: 50px 30px;
+  text-align: center;
+  position: relative;
+}
+
+.overlay {
+  height: 100%;
+  padding: 100px 2rem 0;
+  text-align: center;
+}
+
+.overlay h1 {
+  font-size: 2.5rem;
+}
+
+.overlay p {
+  margin-top: 10px;
+}
+
+.search-bar {
+  background-color: darkgrey;
+  padding: 30px 50px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  position: absolute;
+  top: 70%;
+  left: 20%;
+  margin: 0 auto;
+}
+
+.search-bar select,
+.search-bar button {
+  padding: 10px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+}
+
+.search-bar button {
+  background: #28a745;
+  color: white;
+  cursor: pointer;
+}
+
+.properties {
+  padding: 2rem;
+  background: white;
+  text-align: center;
+}
+
+.property-grid {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+/* .property-card {
+  background: #f0f0f0;
+  padding: 1rem;
+  border-radius: 10px;
+  width: 223px;
+} */
+.property-card {
+    background: #f0f0f0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
+    text-align: center;
+    width:290px;
+    display: inline-block;
+    vertical-align: top;
+    padding: 1rem;
+}
+.property-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+.property-card img {
+  width: 100%;
+  border-radius: 10px;
+  height:150px;
+}
+
+.testimonial {
+  padding: 2rem;
+  text-align: center;
+  font-style: italic;
+}
+
+footer {
+  background: #fff;
+  padding: 1rem 2rem;
+  text-align: center;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+}
+
+footer .socials i {
+  margin: 0 10px;
+  font-size: 20px;
+  color: #333;
+}
+.property-card a {
+    display: inline-block;
+    text-decoration: none;
+    background: linear-gradient(135deg, #28a745, #218838);
+    color: #fff;
+    padding: 10px 25px;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 128, 0, 0.2);
+    text-align: center;
+}
+
+.property-card a:hover {
+    background: linear-gradient(135deg, #218838, #1e7e34);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 128, 0, 0.3);
+}
+
+
+/* ===== Contact Section Styles ===== */
+.contact-section {
+  background-color: #f5f7fa;
+  padding: 60px 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.contact-section h2 {
+  font-size: 36px;
+  font-weight: 700;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.contact-section h2::after {
+  content: "";
+  width: 60px;
+  height: 4px;
+  background-color: #3498db;
+  display: block;
+  margin: 12px auto 0;
+  border-radius: 3px;
+}
+
+.contact-section form {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.08);
+}
+
+.contact-section .form-label {
+  font-weight: 600;
+  color: #34495e;
+  margin-bottom: 6px;
+}
+
+.contact-section .form-control {
+  border-radius: 8px;
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  font-size: 15px;
+  background-color: #fff;
+}
+
+.contact-section .form-control:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+  outline: none;
+}
+
+.contact-section textarea.form-control {
+  resize: none;
+  min-height: 120px;
+}
+
+.contact-section .btn-primary {
+  background-color: #3498db;
+  border: none;
+  padding: 12px 35px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.contact-section .btn-primary:hover {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+}
+
+/* ===== Responsive Styles ===== */
+@media (max-width: 768px) {
+  .contact-section {
+    padding: 40px 20px;
+  }
+
+  .contact-section h2 {
+    font-size: 28px;
+  }
+
+  .contact-section form {
+    padding: 20px;
+  }
+}
+
+.container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* Contact section */
+.contact-section {
+  background-color: #fff;
+  padding: 60px 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.contact-section h2 {
+  text-align: center;
+  font-size: 36px;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.contact-section p {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #777;
+}
+
+/* Contact form */
+.contact-form .form-group {
+  margin-bottom: 20px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Submit button */
+.btn-submit {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  font-size: 18px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-submit:hover {
+  background-color: #0056b3;
+}
+
+/* footer css  */
+.login-container {
+  max-width: 560px;
+  margin: 80px auto;
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.login-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-container input {
+  padding: 10px;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.login-container button {
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.login-container button:hover {
+  background-color: #218838;
+}
+
+.login-container p {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.login-container a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.login-container a:hover {
+  text-decoration: underline;
+}
+
+/* resister css  */
+
+.register-container {
+  max-width: 600px;
+  margin: 80px auto;
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.register-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.register-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.register-container input {
+  padding: 10px;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.register-container button {
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.register-container button:hover {
+  background-color: #0056b3;
+}
+
+.register-container p {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.register-container a {
+  color: #28a745;
+  text-decoration: none;
+}
+
+.register-container a:hover {
+  text-decoration: underline;
+}
+
+/* how to work page style */
+header h1 {
+  color: #6f2dbd;
+  margin-bottom: 10px;
+}
+
+header p {
+  color: #555;
+  font-size: 18px;
+}
+
+.container-how {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.section {
+  background: #fff;
+  border-left: 6px solid #6f2dbd;
+  margin-bottom: 30px;
+  padding: 25px 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.section h3 {
+  color: #2c3e50;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.section p {
+  color: #333;
+  font-size: 16px;
+}
+.section ul li {
+  list-style-type: none;
+}
+.alert {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+.alert-danger { background-color: #f8d7da; color: #721c24; }
+.alert-success { background-color: #d4edda; color: #155724; }
+
+
+/* ===== Slider Section Style ===== */
+.slider {
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    margin-bottom: 15px;
+}
+
+.slider-track {
+    display: flex;
+    transition: transform 1s ease-in-out;
+    width: 100%;
+    height: 100%;
+}
+
+.slide {
+    min-width: 90%;
+    height: 400px;
+    margin: 0 15px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.5s, opacity 0.5s;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.text {
+    position: absolute;
+    bottom: 15px;
+    left: 20px;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 8px 15px;
+    border-radius: 15px;
+    /* text-align: center; */
+    text-transform: capitalize;
+}
+
+/* Dots below the slider */
+.dots {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+.dot {
+    height: 12px;
+    width: 12px;
+    margin: 0 3px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active {
+    background-color: #717171;
+}
+/* Property details */
+.container-property{
+  max-width: 95%;
+  margin: 0 auto;
+}
+.advertisement-img > img{
+    max-width: 100%;
+    margin: 20px 0;
+    height: 400px;
+}
+.advertisement-bottom-img img {
+    width: 90%;
+    height: 200px;
+    display: block;
+    margin: 20px auto;
+    object-fit: cover; /* ensures the image scales nicely */
+}
+/* //advertisement-top */
+.advertisement-top{
+  max-width: 100%;
+  margin: 0 auto;
+}
+.advertisement-top-img{
+  text-align: center;
+}
+.advertisement-top-img > img{
+  width: 90%;
+  height: 200px;
+}
