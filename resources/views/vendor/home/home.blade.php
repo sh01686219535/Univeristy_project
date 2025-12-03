@@ -21,7 +21,7 @@
             <div class="container-fluid">
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
-                    <div class="col-lg-3 col-6">
+                    <div class="col-lg-4 col-6">
                         <!-- small box -->
                         <div class="small-box bg-info">
                             <div class="inner">
@@ -30,14 +30,14 @@
                                 <p>Total Orders</p>
                             </div>
                             <div class="icon">
-                                <i class="ion ion-bag"></i>
+                                 <i class="fas fa-shopping-cart nav-icon"></i>
                             </div>
                             <a href="{{route('order')}}" class="small-box-footer">More info <i
                                     class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
-                    <div class="col-lg-3 col-6">
+                    <div class="col-lg-4 col-6">
                         <!-- small box -->
                         <div class="small-box bg-success">
                             <div class="inner">
@@ -46,45 +46,29 @@
                                 <p>Property</p>
                             </div>
                             <div class="icon">
-                                <i class="ion ion-stats-bars"></i>
+                                 <i class="fas fa-home nav-icon"></i>
                             </div>
                             <a href="{{route('property.index')}}" class="small-box-footer">More info <i
                                     class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
-                    <div class="col-lg-3 col-6">
+                    <div class="col-lg-4 col-6">
                         <!-- small box -->
                         <div class="small-box bg-warning">
                             <div class="inner">
-                                <h3>{{$vendor ?? 0}}</h3>
+                                <h3>{{$advertisement ?? 0}}</h3>
 
-                                <p>Total Vendor</p>
+                                <p>Total Advertisement</p>
                             </div>
                             <div class="icon">
-                                <i class="ion ion-person-add"></i>
+                                {{-- <i class="ion ion-person-add"></i> --}}
+                               <i class="fas fa-bullhorn nav-icon"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i
+                            <a href="{{route('advertisement.index')}}" class="small-box-footer">More info <i
                                     class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
-                    <!-- ./col -->
-                    <div class="col-lg-3 col-6">
-                        <!-- small box -->
-                        <div class="small-box bg-danger">
-                            <div class="inner">
-                                <h3>{{$contact ?? 0}}</h3>
-
-                                <p>Total Contact</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-pie-graph"></i>
-                            </div>
-                            <a href="#" class="small-box-footer">More info <i
-                                    class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <!-- ./col -->
                 </div>
                 <!-- /.row -->
                 <!-- Main row -->

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Vendor;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Advertisement;
 use App\Models\Admin\Order;
 use App\Models\Admin\Property;
 use App\Models\Vendor;
@@ -17,7 +18,8 @@ class VendorController extends Controller
         $vedorId = Auth::guard('vendor')->user()->id;
         $order = Order::where('vendor_id',$vedorId)->count();
         $property = Property::where('vendor_id',$vedorId)->count();
-        return view('vendor.home.home',compact('order','property'));
+        $advertisement = Advertisement::where('vendor_id',$vedorId)->count();
+        return view('vendor.home.home',compact('order','property','advertisement'));
     }
     //login
     public function login()

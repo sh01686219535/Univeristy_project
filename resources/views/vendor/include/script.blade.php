@@ -7,6 +7,8 @@
 <script>
   $.widget.bridge('uibutton', $.ui.button)
 </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 <!-- Bootstrap 4 -->
 <script src="{{asset('backendAsset')}}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script><!-- ChartJS -->
 <script src="{{asset('backendAsset')}}/plugins/chart.js/Chart.min.js"></script>
