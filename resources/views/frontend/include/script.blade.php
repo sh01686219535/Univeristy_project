@@ -21,6 +21,23 @@
 
         showSlide();
     </script>
+    <script>
+    const footer = document.querySelector('.fixed-footer');
+
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.scrollY;
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+
+        // when user reaches bottom
+        if (scrollTop + windowHeight >= documentHeight - 5) {
+            footer.classList.add('show');
+        } else {
+            footer.classList.remove('show');
+        }
+    });
+</script>
+
     @stack('js')
     </body>
 

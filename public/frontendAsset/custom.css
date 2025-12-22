@@ -641,10 +641,26 @@ header p {
   width: 90%;
   height: 200px;
 }
-.fixed-footer {
+/* .fixed-footer {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
     z-index: 999;
+} */
+ .fixed-footer {
+    position: fixed;
+    bottom: -100px; /* hide below screen */
+    left: 0;
+    width: 100%;
+    /* background: #222;
+    color: #fff; */
+    text-align: center;
+    padding: 15px;
+    transition: bottom 0.4s ease-in-out;
+    z-index: 999;
+}
+
+.fixed-footer.show {
+    bottom: 0; /* show footer */
 }
