@@ -181,4 +181,8 @@ class FrontendController extends Controller
     {
         return view('frontend.howtoWork');
     }
+    //userView
+    public function userView(){
+        return view('frontend.home.userLogin');
+    }
 }

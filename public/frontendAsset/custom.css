@@ -31,6 +31,55 @@ body {
   color: #333;
 }
 
+/* Login / Vendor buttons */
+.auth-btn {
+  text-decoration: none;
+  padding: 7px 18px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  background: #f1f3f5;
+  transition: all 0.3s ease;
+}
+
+.auth-btn:hover {
+  background: #56ab83;
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+/* Vendor button */
+.auth-btn.vendor {
+  text-decoration: none;
+  padding: 7px 18px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  background: #f1f3f5;
+  transition: all 0.3s ease;
+}
+
+.auth-btn.vendor:hover {
+  color: #fff;
+  background: #56ab83
+}
+
+/* Logged-in user display */
+.auth-user {
+  padding: 8px 18px;
+  border-radius: 30px;
+  font-weight: 600;
+  background: #e9ecef;
+  color: #212529;
+}
+
+.auth-user.vendor {
+  background: #198754;
+  color: #fff;
+}
+
 .hero {
   background: url('https://image.slidesdocs.com/responsive-images/background/celebrating-the-purchase-of-a-new-home-couple-poses-in-front-of-beautiful-house-real-estate-banner-3d-illustration-powerpoint-background_cd9008602d__960_540.jpg');
   background-size: cover;
@@ -102,25 +151,27 @@ body {
   width: 223px;
 } */
 .property-card {
-    background: #f0f0f0;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transition: all 0.4s ease;
-    text-align: center;
-    width:290px;
-    display: inline-block;
-    vertical-align: top;
-    padding: 1rem;
+  background: #f0f0f0;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease;
+  text-align: center;
+  width: 290px;
+  display: inline-block;
+  vertical-align: top;
+  padding: 1rem;
 }
+
 .property-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-10px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
 }
+
 .property-card img {
   width: 100%;
   border-radius: 10px;
-  height:150px;
+  height: 150px;
 }
 
 .testimonial {
@@ -141,23 +192,24 @@ footer .socials i {
   font-size: 20px;
   color: #333;
 }
+
 .property-card a {
-    display: inline-block;
-    text-decoration: none;
-    background: linear-gradient(135deg, #28a745, #218838);
-    color: #fff;
-    padding: 10px 25px;
-    border-radius: 30px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 128, 0, 0.2);
-    text-align: center;
+  display: inline-block;
+  text-decoration: none;
+  background: linear-gradient(135deg, #28a745, #218838);
+  color: #fff;
+  padding: 10px 25px;
+  border-radius: 30px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 128, 0, 0.2);
+  text-align: center;
 }
 
 .property-card a:hover {
-    background: linear-gradient(135deg, #218838, #1e7e34);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(0, 128, 0, 0.3);
+  background: linear-gradient(135deg, #218838, #1e7e34);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 128, 0, 0.3);
 }
 
 
@@ -461,114 +513,138 @@ header p {
   color: #333;
   font-size: 16px;
 }
+
 .section ul li {
   list-style-type: none;
 }
+
 .alert {
-    padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
 }
-.alert-danger { background-color: #f8d7da; color: #721c24; }
-.alert-success { background-color: #d4edda; color: #155724; }
+
+.alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.alert-success {
+  background-color: #d4edda;
+  color: #155724;
+}
 
 
 /* ===== Slider Section Style ===== */
 .slider {
-    width: 100%;
-    height: 400px;
-    overflow: hidden;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #fff;
-    margin-bottom: 15px;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  margin-bottom: 15px;
 }
 
 .slider-track {
-    display: flex;
-    transition: transform 1s ease-in-out;
-    width: 100%;
-    height: 100%;
+  display: flex;
+  transition: transform 1s ease-in-out;
+  width: 100%;
+  height: 100%;
 }
 
 .slide {
-    min-width: 90%;
-    height: 400px;
-    margin: 0 15px;
-    border-radius: 10px;
-    overflow: hidden;
-    position: relative;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    transition: transform 0.5s, opacity 0.5s;
+  min-width: 90%;
+  height: 400px;
+  margin: 0 15px;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.5s, opacity 0.5s;
 }
 
 .slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .text {
-    position: absolute;
-    bottom: 15px;
-    left: 20px;
-    color: #fff;
-    background: rgba(0, 0, 0, 0.2);
-    padding: 8px 15px;
-    border-radius: 15px;
-    /* text-align: center; */
-    text-transform: capitalize;
+  position: absolute;
+  bottom: 15px;
+  left: 20px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 8px 15px;
+  border-radius: 15px;
+  /* text-align: center; */
+  text-transform: capitalize;
 }
 
 /* Dots below the slider */
 .dots {
-    position: absolute;
-    bottom: 10px;
-    width: 100%;
-    text-align: center;
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
 }
 
 .dot {
-    height: 12px;
-    width: 12px;
-    margin: 0 3px;
-    background-color: #bbb;
-    border-radius: 50%;
-    display: inline-block;
-    transition: background-color 0.6s ease;
+  height: 12px;
+  width: 12px;
+  margin: 0 3px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
 }
 
 .active {
-    background-color: #717171;
+  background-color: #717171;
 }
+
 /* Property details */
-.container-property{
+.container-property {
   max-width: 95%;
   margin: 0 auto;
 }
-.advertisement-img > img{
-    max-width: 100%;
-    margin: 20px 0;
-    height: 400px;
+
+.advertisement-img>img {
+  max-width: 100%;
+  margin: 20px 0;
+  height: 400px;
 }
+
 .advertisement-bottom-img img {
-    width: 90%;
-    height: 200px;
-    display: block;
-    margin: 20px auto;
-    object-fit: cover; /* ensures the image scales nicely */
+  width: 90%;
+  height: 200px;
+  display: block;
+  margin: 20px auto;
+  object-fit: cover;
+  /* ensures the image scales nicely */
 }
+
 /* //advertisement-top */
-.advertisement-top{
+.advertisement-top {
   max-width: 100%;
   margin: 0 auto;
 }
-.advertisement-top-img{
+
+.advertisement-top-img {
   text-align: center;
 }
-.advertisement-top-img > img{
+
+.advertisement-top-img>img {
   width: 90%;
   height: 200px;
+}
+.fixed-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
 }

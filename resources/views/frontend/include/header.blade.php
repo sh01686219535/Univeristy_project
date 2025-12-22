@@ -33,14 +33,21 @@
                     <strong>{{ Auth::guard('user')->user()->name }}</strong>
                 </a>
             @elseif (Auth::guard('vendor')->check())
-            <a style="margin-right: 10px; color: #000;">
+                <a style="margin-right: 10px; color: #000;">
                     <strong>{{ Auth::guard('vendor')->user()->name }}</strong>
-            </a>
+                </a>
             @else
                 {{-- Not logged in --}}
-                <a href="{{ route('user.login') }}">Login</a>
-                <a href="{{ route('user.register') }}">Register</a>
-                <a href="{{ route('vendor.view') }}">Vendor</a>
+                {{-- <a href="{{ route('user.view') }}">Login-Or-Register</a> --}}
+                {{-- <a href="{{ route('user.login') }}">Login</a> --}}
+                {{-- <a href="{{ route('user.register') }}">Register</a> --}}
+                {{-- <a href="{{ route('vendor.view') }}">Vendor</a> --}}
+                <a href="{{ route('user.view') }}" class="auth-btn">
+                    Login / Register
+                </a>
+                <a href="{{ route('vendor.view') }}" class="auth-btn vendor">
+                    Vendor
+                </a>
             @endif
 
 

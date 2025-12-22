@@ -25,6 +25,8 @@ Route::post('/frontend-order/{id}', [OrderController::class, 'order'])->name('fr
 Route::post('/contact-store', [ContactController::class, 'contactStore'])->name('contact.store');
 //property details
 Route::get('/property/details/{id}',[PropertyDetailsController::class,'propertyDetails'])->name('property.details');
+//================User Login=================//
+Route::get('/user-view',[FrontendController::class,'userView'])->name('user.view');
 //================vendor=================//
 Route::get('/vendor-view',[VendorController::class,'vendorView'])->name('vendor.view');
 //======== Frontend route end=============//

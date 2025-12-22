@@ -33,7 +33,7 @@ class UserController extends Controller
             'password' => $check['password'],
         ];
         if (Auth::guard('user')->attempt($data)) {
-            return redirect()->route('user.dashboard');
+            return redirect()->route('user.order');
         } else {
             return redirect()->back()->with('error', 'Invalid Credentials');
         }
