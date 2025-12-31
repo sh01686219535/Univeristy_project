@@ -17,8 +17,8 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        $vendorId = Auth::guard('vendor')->user()->id;
-        $property = Property::where('vendor_id',$vendorId)->orderBy('id', 'desc')->get();
+        $vendorId = Auth::guard('vendor')->id();
+        $property = Property::where('vendor_id', $vendorId)->orderBy('id', 'desc')->get();
         return view("vendor.property.index", compact('property'));
     }
 
@@ -33,30 +33,23 @@ class PropertyController extends Controller
 
     public function store(Request $request)
     {
-        // Validate request
         $request->validate([
-            'title'      => 'required',
-            'category_id' => 'required',
-            'price'      => 'required',
-            'bedroom'    => 'required',
-            'bathroom'   => 'required',
-            'location'   => 'required',
-            'division'   => 'required',
-            'image'      => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'title'        => 'required',
+            'category_id'  => 'required',
+            'price'        => 'required',
+            'bedroom'      => 'required',
+            'bathroom'     => 'required',
+            'location'     => 'required',
+            'division'     => 'required',
+            'image'        => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'multi_image.*' => 'image|mimes:jpg,jpeg,png,webp|max:2048'
         ]);
 
-         $vendorId = Auth::guard('vendor')->user()->id;
+        // ✅ CORRECT
+        $vendorId = Auth::guard('vendor')->id();
 
-        // New Property
         $property = new Property();
-
-        // Vendor Assign
-        if ($vendorId) {
-            $property->vendor_id = $vendorId;
-        }
-
-        // Assign fields
+        $property->vendor_id   = $vendorId;
         $property->title       = $request->title;
         $property->category_id = $request->category_id;
         $property->size        = $request->size;
@@ -67,9 +60,7 @@ class PropertyController extends Controller
         $property->division    = $request->division;
         $property->description = $request->description;
 
-        /***********************
-         * Single Image Upload
-         ***********************/
+        // Single image
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = uniqid() . '.' . $image->getClientOriginalExtension();
@@ -77,22 +68,17 @@ class PropertyController extends Controller
             $property->image = 'PropertyImages/' . $imageName;
         }
 
-        /*************************
-         * Multiple Image Upload
-         *************************/
+        // Multiple images
         if ($request->hasFile('multi_image')) {
-            $multiImages = [];
-            foreach ($request->file('multi_image') as $multi) {
-                if ($multi->isValid()) {
-                    $multiName = uniqid() . '.' . $multi->getClientOriginalExtension();
-                    $multi->move(public_path('PropertyMultiImages'), $multiName);
-                    $multiImages[] = 'PropertyMultiImages/' . $multiName;
-                }
+            $images = [];
+            foreach ($request->file('multi_image') as $img) {
+                $name = uniqid() . '.' . $img->getClientOriginalExtension();
+                $img->move(public_path('PropertyMultiImages'), $name);
+                $images[] = 'PropertyMultiImages/' . $name;
             }
-            $property->multi_image = json_encode($multiImages);
+            $property->multi_image = json_encode($images);
         }
 
-        // Save Property
         $property->save();
 
         return redirect()->route('property.index')

@@ -56,7 +56,6 @@ class AdminController extends Controller
     public function vendorDelete($id){
         $vendor = Vendor::findOrFail($id);
         $vendor->delete();
-        $vendor->save();
         return back()->with('success','Vendor Deleted Successfully');
     }
 }

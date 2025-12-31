@@ -44,8 +44,8 @@
                                                 <td>{{ $data->email }}</td>
 
                                                 <td>
-                                                    <img src="{{ asset($data->image) }}" 
-                                                         width="50" height="50" alt="Vendor Image">
+                                                    <img src="{{ asset($data->image) }}" width="50" height="50"
+                                                        alt="Vendor Image">
                                                 </td>
 
                                                 <td>
@@ -65,14 +65,11 @@
                                                 </td>
 
                                                 <td class="d-flex">
-                                                    <form action="{{ route('vendor.delete', $data->id) }}" 
-                                                          method="POST">
-                                                        @csrf
-                                                        <button class="btn btn-danger" type="submit"
-                                                            onclick="return confirm('Are you sure you want to delete this vendor?')">
-                                                            <i class="fa-solid fa-trash"></i>
-                                                        </button>
-                                                    </form>
+                                                    <a class="btn btn-danger" type="submit"
+                                                        href="{{ route('vendor.delete', $data->id) }}"
+                                                        onclick="return confirm('Are you sure you want to delete this vendor?')">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </a>
                                                 </td>
                                             </tr>
                                         @endforeach

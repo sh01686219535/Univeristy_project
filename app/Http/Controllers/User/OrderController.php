@@ -38,8 +38,9 @@ class OrderController extends Controller
     public function orderIndex()
     {
         $vendorId = Auth::guard('user')->user()->id;
+        // dd( $vendorId);
         if (isset($vendorId)) {
-            $order = Order::where('vendor_id', $vendorId)->orderBy('id', 'desc')->paginate(10);
+            $order = Order::where('user_id', $vendorId)->orderBy('id', 'desc')->paginate(10);
             return view('user.order.index', compact('order'));
         } else {
             $order = Order::orderBy('id', 'desc')->paginate(10);

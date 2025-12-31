@@ -51,6 +51,7 @@ class VendorController extends Controller
     }
     //registerStore
     public function registerStore(Request $request) {
+        // dd($request);
         $request->validate([
             'name'=>'required|string|max:255',
             'email'=>'required|max:255|email|unique:vendors,email',
@@ -62,6 +63,8 @@ class VendorController extends Controller
         $vendor->email = $request->email;
         $vendor->password = Hash::make($request->password);
         $vendor->save();
+        
+        Auth::guard('vendor')->login($vendor);
         return redirect()->route('vendor.dashboard');
     }
     // logout

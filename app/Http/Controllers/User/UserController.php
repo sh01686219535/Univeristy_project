@@ -56,6 +56,7 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->save();
+        Auth::guard('user')->login($user);
         return redirect()->route('user.dashboard');
     }
     //userLogout
