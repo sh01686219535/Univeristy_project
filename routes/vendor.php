@@ -39,4 +39,7 @@ Route::prefix('vendor')->group(function(){
     //===========Profile==========//
     Route::get('/profile-index', [ProfileController::class, 'profileIndex'])->name('profile.index');
     Route::post('/profile-update', [ProfileController::class, 'profileUpdate'])->name('profile.update');
+    //==============Vendor Approve============//
+    Route::get('vendor-approve/{id}',[VendorController::class,'vendorApprove'])->name('vendor.approve');
+    Route::get('vendor-cancel/{id}',[VendorController::class,'vendorCancel'])->name('vendor.cancel');
 });

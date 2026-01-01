@@ -25,6 +25,7 @@
                                             <th>Phone</th>
                                             <th>Email</th>
                                             <th>Image</th>
+                                            <th>Approve</th>
                                             <th>Status</th>
                                             <th>Action</th>
                                         </tr>
@@ -47,7 +48,26 @@
                                                     <img src="{{ asset($data->image) }}" width="50" height="50"
                                                         alt="Vendor Image">
                                                 </td>
-
+                                                <td class="text-center">
+                                                    @if ($data->status === 'approved')
+                                                        <span class="badge bg-success px-3 py-2">
+                                                            <i class="fas fa-check-circle"></i> Approved
+                                                        </span>
+                                                    @elseif ($data->status === 'cancel')
+                                                        <span class="badge bg-danger px-3 py-2">
+                                                            <i class="fas fa-times-circle"></i> Canceled
+                                                        </span>
+                                                    @else
+                                                        <a href="{{ route('vendor.approve', $data->id) }}"
+                                                            class="btn btn-success btn-sm me-2">
+                                                            <i class="fas fa-check-circle"></i> Approve
+                                                        </a>
+                                                        <a href="{{ route('vendor.cancel', $data->id) }}"
+                                                            class="btn btn-danger btn-sm">
+                                                            <i class="fas fa-times-circle"></i> Cancel
+                                                        </a>
+                                                    @endif
+                                                </td>
                                                 <td>
                                                     @if ($data->status == 0)
                                                         <span class="badge bg-warning text-dark px-3 py-2">

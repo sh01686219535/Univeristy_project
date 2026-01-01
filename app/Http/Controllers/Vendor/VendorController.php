@@ -14,12 +14,13 @@ use Hash;
 class VendorController extends Controller
 {
     //dashboard
-    public function dashboard(){
+    public function dashboard()
+    {
         $vedorId = Auth::guard('vendor')->user()->id;
-        $order = Order::where('vendor_id',$vedorId)->count();
-        $property = Property::where('vendor_id',$vedorId)->count();
-        $advertisement = Advertisement::where('vendor_id',$vedorId)->count();
-        return view('vendor.home.home',compact('order','property','advertisement'));
+        $order = Order::where('vendor_id', $vedorId)->count();
+        $property = Property::where('vendor_id', $vedorId)->count();
+        $advertisement = Advertisement::where('vendor_id', $vedorId)->count();
+        return view('vendor.home.home', compact('order', 'property', 'advertisement'));
     }
     //login
     public function login()
@@ -27,50 +28,87 @@ class VendorController extends Controller
         return view('vendor.home.login');
     }
     //loginStore
+    // public function loginStore(Request $request)
+    // {
+    //     $request->validate([
+    //         'email' => 'required|email',
+    //         'password' => 'required'
+    //     ]);
+    //     $check = $request->all();
+    //     $data = [
+    //         'email' => $check['email'],
+    //         'password' => $check['password'],
+    //     ];
+    //     if (Auth::guard('vendor')->attempt($data)) {
+
+    //         return redirect()->route('vendor.dashboard');
+    //     } else {
+    //         return redirect()->back()->with('error', 'Invalid Credentials');
+    //     }
+    // }
+    // loginStore
     public function loginStore(Request $request)
     {
         $request->validate([
-            'email' => 'required|email',
+            'email'    => 'required|email',
             'password' => 'required'
         ]);
-        $check = $request->all();
-        $data = [
-            'email' => $check['email'],
-            'password' => $check['password'],
-        ];
-        if (Auth::guard('vendor')->attempt($data)) {
+
+        if (Auth::guard('vendor')->attempt([
+            'email'    => $request->email,
+            'password' => $request->password,
+            'status'   => 1, // ✅ only active vendors
+        ])) {
             return redirect()->route('vendor.dashboard');
-        } else {
-            return redirect()->back()->with('error', 'Invalid Credentials');
         }
+
+        return redirect()->back()
+            ->with('error', 'Your account is pending approval or credentials are invalid.');
     }
+
     //register
     public function register()
     {
         return view('vendor.home.register');
     }
     //registerStore
-    public function registerStore(Request $request) {
+    public function registerStore(Request $request)
+    {
         // dd($request);
         $request->validate([
-            'name'=>'required|string|max:255',
-            'email'=>'required|max:255|email|unique:vendors,email',
-            'password'=>'required',
-            'password_confirmation'=>'required|same:password'
+            'name' => 'required|string|max:255',
+            'email' => 'required|max:255|email|unique:vendors,email',
+            'password' => 'required',
+            'password_confirmation' => 'required|same:password'
         ]);
         $vendor = new Vendor();
         $vendor->name = $request->name;
         $vendor->email = $request->email;
         $vendor->password = Hash::make($request->password);
         $vendor->save();
-        
-        Auth::guard('vendor')->login($vendor);
-        return redirect()->route('vendor.dashboard');
+
+        // Auth::guard('vendor')->login($vendor);
+        // return redirect()->route('vendor.dashboard');
+        return back()->with('success', 'Vendor Registration successfully');
     }
     // logout
     public function VendorLogout()
     {
         Auth::guard('vendor')->logout();
         return redirect()->route('home')->with('success', 'Vendor Logout Successfully');
+    }
+    //vendorApprove
+    public function vendorApprove($id){
+        $vendor = Vendor::findOrFail($id);
+        $vendor->status = 1;
+        $vendor->save();
+        return back()->with('success','Vendor Approved Successfully');
+    }
+    //vendorCancel
+     public function vendorCancel($id){
+        $vendor = Vendor::findOrFail($id);
+        $vendor->status = 0;
+        $vendor->save();
+        return back()->with('success','Vendor Approved Successfully');
     }
 }
