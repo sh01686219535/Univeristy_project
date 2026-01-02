@@ -9,6 +9,8 @@ use App\Models\Vendor;
 use Illuminate\Http\Request;
 use File;
 use Illuminate\Support\Facades\Auth;
+use Devrabiul\ToastMagic\Facades\ToastMagic;
+
 
 class PropertyController extends Controller
 {
@@ -80,9 +82,8 @@ class PropertyController extends Controller
         }
 
         $property->save();
-
-        return redirect()->route('property.index')
-            ->with('success', 'Property added successfully!');
+        ToastMagic::success('Property added successfully!');
+        return redirect()->route('property.index');
     }
 
 
@@ -131,7 +132,7 @@ class PropertyController extends Controller
                 $property['image'] = 'PropertyImages/' . $imageName;
             }
             $property->save();
-            // ToastMagic::success('Property Update successfully!');
+            ToastMagic::success('Property Update successfully!');
             return redirect('property');
         } else {
             return redirect('property');
@@ -150,7 +151,7 @@ class PropertyController extends Controller
 
         $property->delete();
 
-        // ToastMagic::success('Property deleted successfully!');
+        ToastMagic::info('Property deleted successfully!');
         return back();
     }
 }

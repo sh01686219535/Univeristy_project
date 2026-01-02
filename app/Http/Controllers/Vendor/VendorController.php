@@ -10,6 +10,7 @@ use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Hash;
+use Devrabiul\ToastMagic\Facades\ToastMagic;
 
 class VendorController extends Controller
 {
@@ -59,11 +60,11 @@ class VendorController extends Controller
             'password' => $request->password,
             'status'   => 1, // ✅ only active vendors
         ])) {
+            ToastMagic::success('Login successfully!');
             return redirect()->route('vendor.dashboard');
         }
-
-        return redirect()->back()
-            ->with('error', 'Your account is pending approval or credentials are invalid.');
+        ToastMagic::error('Your account is pending approval or credentials are invalid!');
+        return redirect()->back();
     }
 
     //register
@@ -89,26 +90,30 @@ class VendorController extends Controller
 
         // Auth::guard('vendor')->login($vendor);
         // return redirect()->route('vendor.dashboard');
-        return back()->with('success', 'Vendor Registration successfully');
+        ToastMagic::success('Vendor Registration successfully!');
+        return back();
     }
     // logout
     public function VendorLogout()
     {
         Auth::guard('vendor')->logout();
-        return redirect()->route('home')->with('success', 'Vendor Logout Successfully');
+        ToastMagic::success('Vendor Logout successfully!');
+        return redirect()->route('home');
     }
     //vendorApprove
     public function vendorApprove($id){
         $vendor = Vendor::findOrFail($id);
         $vendor->status = 1;
         $vendor->save();
-        return back()->with('success','Vendor Approved Successfully');
+        ToastMagic::success('Vendor Approved successfully!');
+        return back();
     }
     //vendorCancel
      public function vendorCancel($id){
         $vendor = Vendor::findOrFail($id);
         $vendor->status = 0;
         $vendor->save();
-        return back()->with('success','Vendor Approved Successfully');
+        ToastMagic::success('Vendor Canceled successfully!');
+        return back();
     }
 }

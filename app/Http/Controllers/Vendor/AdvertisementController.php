@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin\Advertisement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Devrabiul\ToastMagic\Facades\ToastMagic;
+
 
 class AdvertisementController extends Controller
 {
@@ -49,7 +51,8 @@ class AdvertisementController extends Controller
         }
 
         $advertisement->save();
-        return redirect()->route('advertisement.index')->with('success', 'Advertisement Created Successfully');
+         ToastMagic::success('Advertisement added successfully!');
+        return redirect()->route('advertisement.index');
     }
 
     /**
@@ -85,7 +88,8 @@ class AdvertisementController extends Controller
         }
 
         $advertisement->save();
-        return redirect()->route('advertisement.index')->with('success', 'Advertisement Updated Successfully');
+        ToastMagic::success('Advertisement Updated successfully!');
+        return redirect()->route('advertisement.index');
     }
 
     /**
@@ -95,6 +99,7 @@ class AdvertisementController extends Controller
     {
         $advertisement = Advertisement::findOrFail($id);
         $advertisement->delete();
-        return back()->with('success', 'Advertisement Deleted Successfully');
+        ToastMagic::success('Advertisement Deleted successfully!');
+        return back();
     }
 }

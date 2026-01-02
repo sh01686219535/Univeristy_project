@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Category;
 use Illuminate\Http\Request;
+use Devrabiul\ToastMagic\Facades\ToastMagic;
 
 class CategoryController extends Controller
 {
@@ -37,7 +38,8 @@ class CategoryController extends Controller
         $category = new Category();
         $category->category = $request->category;
         $category->save();
-        return redirect()->route('category.index')->with('success', 'Category Created Successfully');
+        ToastMagic::success('Category Created successfully!');
+        return redirect()->route('category.index');
     }
 
     /**
@@ -65,7 +67,8 @@ class CategoryController extends Controller
         $category = Category::findOrFail($id);
         $category->category = $request->category;
         $category->save();
-        return redirect()->route('category.index')->with('success', 'Category Updated Successfully');
+        ToastMagic::success('Category Updated successfully!');
+        return redirect()->route('category.index');
     }
 
     /**
@@ -75,7 +78,7 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail($id);
         $category->delete();
-
-        return back()->with('success', 'Category Deleted Successfully');
+        ToastMagic::info('Category Deleted successfully!');
+        return back();
     }
 }

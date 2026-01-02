@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Devrabiul\ToastMagic\Facades\ToastMagic;
 
 class ProfileController extends Controller
 {
@@ -39,7 +40,7 @@ class ProfileController extends Controller
             $vendor->save();
         }
 
-        // ToastMagic::success('Profile updated successfully!');
+        ToastMagic::success('Profile updated successfully!');
         return back();
     }
 }

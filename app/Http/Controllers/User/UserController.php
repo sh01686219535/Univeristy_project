@@ -7,6 +7,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Hash;
+use Devrabiul\ToastMagic\Facades\ToastMagic;
+
 
 class UserController extends Controller
 {
@@ -33,9 +35,11 @@ class UserController extends Controller
             'password' => $check['password'],
         ];
         if (Auth::guard('user')->attempt($data)) {
+            ToastMagic::success('Login successfully!');
             return redirect()->route('user.order');
         } else {
-            return redirect()->back()->with('error', 'Invalid Credentials');
+            ToastMagic::error('Invalid Credentials!');
+            return redirect()->back();
         }
     }
     //register
@@ -57,11 +61,13 @@ class UserController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
         Auth::guard('user')->login($user);
+        ToastMagic::success('Login successfully!');
         return redirect()->route('user.dashboard');
     }
     //userLogout
     public function userLogout() {
         Auth::guard('user')->logout();
-        return redirect()->route('home')->with('success', 'User Logout Successfully');
+        ToastMagic::success('User Logout Successfully!');
+        return redirect()->route('home');
     }
 }

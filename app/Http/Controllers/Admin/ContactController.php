@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Contact;
 use Illuminate\Http\Request;
+use Devrabiul\ToastMagic\Facades\ToastMagic;
 
 class ContactController extends Controller
 {
@@ -21,7 +22,7 @@ class ContactController extends Controller
         $contact->phone = $request->phone;
         $contact->message = $request->message;
         $contact->save();
-        // ToastMagic::success('Contact Submitted successfully!');
+        ToastMagic::success('Contact Submitted successfully!');
         return back();
     }
     //index
@@ -33,7 +34,7 @@ class ContactController extends Controller
     public function delete($id){
         $contact = Contact::findOrFail($id);
         $contact->delete();
-        // ToastMagic::success('Contact Deleted successfully!');
+        ToastMagic::info('Contact Deleted successfully!');
         return back();
     }
 }

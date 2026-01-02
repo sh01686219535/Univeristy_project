@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\OrderApprovedMail;
 use App\Mail\OrderCancelledMail;
+use Devrabiul\ToastMagic\Facades\ToastMagic;
 
 class OrderController extends Controller
 {
@@ -33,7 +34,7 @@ class OrderController extends Controller
             $order->email = $request->email;
             $order->message = $request->message;
             $order->save();
-            // ToastMagic::success('Order Submitted successfully!');
+            ToastMagic::success('Order Submitted successfully!');
             return back();
         }
     }
@@ -55,7 +56,7 @@ class OrderController extends Controller
     {
         $order = Order::findOrFail($id);
         $order->delete();
-        // ToastMagic::success('Order Deleted successfully!');
+        ToastMagic::success('Order Deleted successfully!');
         return back();
     }
     //orderProperty
@@ -84,8 +85,8 @@ class OrderController extends Controller
         if ($vendor && $vendor->email) {
             Mail::to($vendor->email)->send(new OrderApprovedMail($order));
         }
-
-        return redirect()->back()->with('success', 'Order approved and emails sent successfully!');
+        ToastMagic::success('Order approved and emails sent successfully!');
+        return redirect()->back();
     }
 
     //  Cancel Order
@@ -105,8 +106,8 @@ class OrderController extends Controller
         if ($vendor && $vendor->email) {
             Mail::to($vendor->email)->send(new OrderCancelledMail($order));
         }
-
-        return redirect()->back()->with('error', 'Order cancelled and emails sent.');
+        ToastMagic::success('Order cancelled and emails sent.!');
+        return redirect()->back();
     }
     //orderEdit
     public function orderEdit($id)
@@ -132,7 +133,7 @@ class OrderController extends Controller
         }
         $order->message = $request->message;
         $order->save();
-        // ToastMagic::success('Order Submitted successfully!');
-        return redirect()->route('order')->with('success', 'Order Update Successfully');
+        ToastMagic::info('Order Update successfully!');
+        return redirect()->route('order');
     }
 }

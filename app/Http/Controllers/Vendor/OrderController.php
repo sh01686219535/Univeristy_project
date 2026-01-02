@@ -12,10 +12,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\OrderApprovedMail;
 use App\Mail\OrderCancelledMail;
+use Devrabiul\ToastMagic\Facades\ToastMagic;
 
 class OrderController extends Controller
 {
-   public function order(Request $request, $id)
+    public function order(Request $request, $id)
     {
         $request->validate([
             'name' => 'required|string|max:100',
@@ -33,7 +34,7 @@ class OrderController extends Controller
             $order->email = $request->email;
             $order->message = $request->message;
             $order->save();
-            // ToastMagic::success('Order Submitted successfully!');
+            ToastMagic::success('Order Submitted successfully!');
             return back();
         }
     }
@@ -54,7 +55,7 @@ class OrderController extends Controller
     {
         $order = Order::findOrFail($id);
         $order->delete();
-        // ToastMagic::success('Order Deleted successfully!');
+        ToastMagic::info('Order Deleted successfully!');
         return back();
     }
     //orderProperty
@@ -82,8 +83,8 @@ class OrderController extends Controller
         if ($vendor && $vendor->email) {
             Mail::to($vendor->email)->send(new OrderApprovedMail($order));
         }
-
-        return redirect()->back()->with('success', 'Order approved and emails sent successfully!');
+        ToastMagic::success('Order approved and emails sent successfully!');
+        return redirect()->back();
     }
 
     //  Cancel Order
@@ -103,8 +104,8 @@ class OrderController extends Controller
         if ($vendor && $vendor->email) {
             Mail::to($vendor->email)->send(new OrderCancelledMail($order));
         }
-
-        return redirect()->back()->with('error', 'Order cancelled and emails sent.');
+        ToastMagic::success('Order cancelled and emails sent successfully!');
+        return redirect()->back();
     }
     //orderEdit
     public function orderEdit($id)
@@ -125,12 +126,12 @@ class OrderController extends Controller
             $order->status = $request->status;
         } elseif ($request->status == "cancel") {
             $order->status = $request->status;
-        } elseif($request->status == 'pending') {
+        } elseif ($request->status == 'pending') {
             $order->status = '';
         }
         $order->message = $request->message;
         $order->save();
-        // ToastMagic::success('Order Submitted successfully!');
-        return redirect()->route('order')->with('success', 'Order Update Successfully');
+        ToastMagic::success('Order Update successfully!');
+        return redirect()->route('order');
     }
 }

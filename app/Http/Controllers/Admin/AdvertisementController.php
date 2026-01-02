@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Advertisement;
 use Illuminate\Http\Request;
+use Devrabiul\ToastMagic\Facades\ToastMagic;
 
 class AdvertisementController extends Controller
 {
@@ -43,7 +44,8 @@ class AdvertisementController extends Controller
         }
 
         $advertisement->save();
-        return redirect()->route('admin_advertisement.index')->with('success','Advertisement Created Successfully');
+        ToastMagic::success('Advertisement Created successfully!');
+        return redirect()->route('admin_advertisement.index');
     }
 
     /**
@@ -80,7 +82,8 @@ class AdvertisementController extends Controller
         }
 
         $advertisement->save();
-        return redirect()->route('admin_advertisement.index')->with('success','Advertisement Updated Successfully');
+        ToastMagic::success('Advertisement Updated successfully!');
+        return redirect()->route('admin_advertisement.index');
     }
 
     /**
@@ -90,6 +93,7 @@ class AdvertisementController extends Controller
     {
       $advertisement = Advertisement::findOrFail($id);
       $advertisement->delete();
-      return back()->with('success','Advertisement Deleted Successfully');
+      ToastMagic::info('Advertisement Deleted successfully!');
+      return back();
     }
 }

@@ -10,6 +10,7 @@ use App\Models\Admin\Property;
 use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Devrabiul\ToastMagic\Facades\ToastMagic;
 
 class AdminController extends Controller
 {
@@ -37,15 +38,18 @@ class AdminController extends Controller
             'password'=>$check['password'],
         ];
         if(Auth::guard('admin')->attempt($data)){
+            ToastMagic::success('Login successfully');
             return redirect()->route('admin.dashboard');
         }else{
-            return redirect()->back()->with('error','Invalid Credentials');
+            ToastMagic::error('Invalid Credentialsly');
+            return redirect()->back();
         }
     }
     // logout
     public function AdminLogout(){
         Auth::guard('admin')->logout();
-        return redirect()->route('home')->with('success','Admin Logout Successfully');
+         ToastMagic::success('Admin Logout Successfully');
+        return redirect()->route('home');
     }
     //vendorList
     public function vendorList(){
@@ -56,6 +60,7 @@ class AdminController extends Controller
     public function vendorDelete($id){
         $vendor = Vendor::findOrFail($id);
         $vendor->delete();
-        return back()->with('success','Vendor Deleted Successfully');
+        ToastMagic::success('Vendor Deleted Successfully');
+        return back();
     }
 }
